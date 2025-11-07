@@ -1,0 +1,34 @@
+name: Using Defaults
+on:
+  push:
+    branches: ["feature/defaults"]
+jobs:
+  first-job:
+    name: first job
+    runs-on: ubuntu-latest
+    steps:
+      - name: create src directory
+        run: mkdir src
+        shell: bash
+      - name: use python
+        run: import os; print("I'm running python! " + os.getcwd())
+        shell: python
+        working-directory: src
+      - name: use bash
+        run: echo "Im running bash in $(pwd). Boo."
+        shell: bash
+        working-directory: src
+      - name: use bash also
+        run: echo "also bash here $(pwd)"
+        shell: bash
+  second-job:
+    name: second job 
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create Source Directory
+        run: mkdir src
+        shell: bash
+      - name: Use Bash
+        run: echo "I'm running bash in $(pwd). So sad."
+        shell: bash
+        working-directory: src
